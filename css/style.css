@@ -1,0 +1,248 @@
+* {
+	box-sizing: border-box;
+}
+body {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #f0f0ff;
+	font-family: "Arial", sans-serif;
+}
+
+button,
+button:focus,
+button:focus-visible {
+	outline: 0;
+	border: none;
+}
+
+
+.dropdown {
+    position: relative;
+    display: inline-flex;
+}
+
+.dropdown-btn {
+    background-color: #3498db;
+    color: #fff;
+    padding: 10px 20px;
+	font-size: 10px;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+    border-radius: 0 8px 8px 0;
+	min-width: 98px;
+}
+
+.dropdown-content {
+    --btn-h: 32px;
+    transition: 0.25s;
+    opacity: 1;
+    transform: scale(0);
+    position: absolute;
+    top: -50px;
+    left: 0;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 99;
+}
+
+.dropdown:hover .dropdown-content {
+    opacity: 1;
+    transform: scale(100%);
+    top: var(--btn-h);
+}
+
+.dropdown-content a {
+    display: block;
+    padding: 10px 15px;
+    text-decoration: none;
+    color: #333;
+    transition: background-color 0.3s;
+}
+
+.dropdown-content a:hover {
+    background-color: #3498db;
+    color: #fff;
+}
+
+#container {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	width: 500px;
+	background-color: #fafafa;
+	padding: 0px;
+	box-shadow: 0 20px 30px 0 rgba(1, 1, 1, 0.07);
+	margin: 96px 0;
+	border-radius: 20px;
+}
+
+#taskForm {
+	--h: 50px;
+	display: flex;
+	gap: 20px;
+	justify-content: center;
+	width: 100%;
+	padding: 24px;
+}
+
+#taskForm #taskAdd {
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+	width: var(--h);
+	height: var(--h);
+	background: #3b44fb;
+	color: #fff;
+	text-align: center;
+	font-size: 32px;
+	font-weight: 300;
+	border-radius: 12px;
+	border: 0;
+	outline: 0;
+	will-change: transform;
+}
+
+#taskForm #taskAdd:hover {
+	background: #050fe5;
+	transform: scale(0.95);
+}
+
+#taskForm #taskAdd:active {
+	transform: scale(0.9);
+}
+
+#taskForm input#taskInput {
+	font-family: inherit;
+	font-size: 16px;
+	font-weight: 600;
+	border: 3px solid #eee;
+	background-color: #fff;
+	color: #0d0d0d;
+	width: calc(100% - var(--h));
+	padding: 0 18px;
+	line-height: 1;
+	border-radius: 12px;
+	transition: .25s;
+}
+#taskForm input#taskInput::placeholder {
+	color: #aaa;
+}
+#taskForm input#taskInput:focus-visible,
+#taskForm input#taskInput:focus {
+	outline: none;
+	border-color: #dfdfdf;
+}
+
+#tasksList {
+	padding: 0;
+	list-style-type: none;
+	margin: 0 28px;
+	padding-bottom: 18px;
+}
+
+#tasksList input {
+	background-color: transparent;
+	width: 100%;
+	border: 0;
+	padding: 5px 10px;
+	margin: 0 60px 0 0;
+	font-size: 16px;
+	font-weight: 600;
+	color: #0d0d0d;
+	transition: all 0.3s ease-in-out;
+	outline: none !important;
+	border-radius: 5px;
+}
+#tasksList input.editing {
+	border: 1px solid #ccc;
+}
+#tasksList li {
+    --h: 58px;
+    --bdrs: 12px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 20px 30px 0 rgba(1, 1, 1, 0.07);
+    border-radius: var(--bdrs);
+    color: #0d0d0d;
+    padding: 0 20px;
+    font-weight: 600;
+    background-color: #fff;
+    position: relative;
+    will-change: transform;
+    margin-bottom: 15px;
+    height: var(--h);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#tasksList li .save-edit,
+#tasksList li .delete {
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: var(--h);
+	height: var(--h);
+	opacity: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #fa4b4b;
+	border-radius: var(--bdrs);
+	color: #fff;
+}
+#tasksList li .save-edit {
+	display: none;
+}
+#tasksList li.editing .save-edit {
+	display: flex;
+	background-color: #8BC34A;
+}
+#tasksList li.editing .delete {
+	display: none;
+}
+#tasksList li:hover {
+	transition: all 0.3s ease-in-out;
+	transform: scale(1.05);
+	box-shadow: 0 20px 30px 0 rgba(1, 1, 1, 0.2);
+}
+
+#tasksList li:hover .save-edit,
+#tasksList li:hover .delete {
+	opacity: 1;
+}
+
+#tasksList li .save-edit:hover,
+#tasksList li .delete:hover {
+	opacity: 0.75;
+}
+
+#tasksList .no-result {
+	font-size: 16px;
+    font-weight: 600;
+    color: #c6c6c6;
+    background-color: transparent;
+    box-shadow: none;
+    padding: 10px 0;
+}
+#tasksList .no-result:hover {
+	box-shadow: none;
+	transform: none;
+}
+#tasksList .dropdown {
+	position: absolute;
+    top: 50%;
+	right: -98px;
+    transform: translateY(-50%);
+	opacity: 0;
+	width: 0;
+}
+#tasksList li:hover .dropdown {
+	opacity: 1;
+	width: auto;
+}
+
